@@ -26,9 +26,9 @@ struct Point {
     Point operator*(double factor) const;
 
     Point &operator*=(double factor);
-};
 
-Point operator*(double factor, const Point &point);
+    friend Point operator*(double factor, const Point &point);
+};
 
 class ParticleLenia {
 public:
@@ -43,9 +43,11 @@ public:
     void step();
 
 private:
-    static double kernel_function(double x, double mu, double sigma2);
 
     Point gradient(const Point &point) const;
+
+protected:
+    static double kernel_function(double x, double mu, double sigma2);
 };
 
 
